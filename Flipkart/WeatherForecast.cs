@@ -1,4 +1,4 @@
-namespace Flipkart
+namespace SEMBS
 {
     public class WeatherForecast
     {
