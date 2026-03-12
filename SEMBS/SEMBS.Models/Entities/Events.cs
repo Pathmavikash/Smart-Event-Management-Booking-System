@@ -9,5 +9,6 @@
         public string Venue { get; set; }
         public int Capacity { get; set; }
         public int OrganizerId { get; set; }
+        public int Price { get; set; }
     }
 }

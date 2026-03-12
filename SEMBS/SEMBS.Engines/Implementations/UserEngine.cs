@@ -2,16 +2,19 @@
 using SEMBS.SEMBS.Engines.Contracts;
 using SEMBS.SEMBS.Models.DTO;
 using SEMBS.SEMBS.Models.Entities;
+using SEMBS.SEMBS.Repository.Contracts;
 
 namespace SEMBS.SEMBS.Engines.Implementations
 {
     public class UserEngine : IUserEngine
     {
         private readonly AppDbContext appDbContext;
+        private readonly IGenericRepository<User> genericRepository;
 
-        public UserEngine(AppDbContext appDbContext)
+        public UserEngine(AppDbContext appDbContext, IGenericRepository<User> genericRepository)
         {
             this.appDbContext = appDbContext;
+            this.genericRepository = genericRepository;
         }
         public bool AddNewUser(UserDTO userDTO)
         {
@@ -24,9 +27,8 @@ namespace SEMBS.SEMBS.Engines.Implementations
             };
             try
             {
-                appDbContext.Users.Add(user);
-                int rowsaffected = appDbContext.SaveChanges();
-                return rowsaffected > 0;
+                genericRepository.AddAsync(user);
+                return true;
             }
             catch (Exception ex)
             {

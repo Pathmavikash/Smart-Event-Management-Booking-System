@@ -1,0 +1,23 @@
+<div class="event-list-container">
+  <h3>Available Events</h3>
+
+  <div *ngIf="isLoading" class="loader">Loading events...</div>
+
+  <div class="event-grid" *ngIf="!isLoading">
+    <div class="event-card" *ngFor="let event of events">
+      <h4>{{ event.title }}</h4>
+      <p class="venue"><strong>Location:</strong> {{ event.venue }}</p>
+      <p class="date"><strong>Date:</strong> {{ event.date | date:'mediumDate' }}</p>
+      <p>{{ event.description }}</p>
+      
+      <div class="card-footer">
+        <span>Capacity: {{ event.capacity }}</span>
+        <button class="btn-primary" (click)="bookEvent(event)">Book Now</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading && events.length === 0" class="no-data">
+    No events found. Check back later!
+  </div>
+</div>

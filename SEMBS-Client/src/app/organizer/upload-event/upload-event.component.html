@@ -1,0 +1,116 @@
+<div class="event-container">
+
+  <mat-card class="event-card flat-card">
+    <mat-card-header>
+      <mat-card-title>Create New Event</mat-card-title>
+      <mat-card-subtitle>Upload event details and images</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <mat-stepper
+        [linear]="true"
+        class="event-stepper"
+        [orientation]="isMobile ? 'vertical' : 'horizontal'"
+      >
+
+        <!-- STEP 1: BASIC DETAILS -->
+        <mat-step [stepControl]="basicForm">
+          <form [formGroup]="basicForm">
+            <ng-template matStepLabel>Basic Details</ng-template>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title" />
+              <mat-error>Title is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Description</mat-label>
+              <textarea matInput rows="4" formControlName="description"></textarea>
+              <mat-error>Description is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Venue</mat-label>
+              <input matInput formControlName="venue" />
+              <mat-error>Venue is required</mat-error>
+            </mat-form-field>
+
+            <div class="step-actions">
+              <button mat-raised-button color="primary" matStepperNext>
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- STEP 2: EVENT INFO -->
+        <mat-step [stepControl]="infoForm">
+          <form [formGroup]="infoForm">
+            <ng-template matStepLabel>Event Info</ng-template>
+
+            <div class="grid">
+              <mat-form-field appearance="outline">
+                <mat-label>Capacity</mat-label>
+                <input matInput type="number" formControlName="capacity" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Event Date</mat-label>
+                <input matInput type="date" formControlName="eventDate" />
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Price</mat-label>
+                <input matInput type="number" formControlName="price" />
+              </mat-form-field>
+            </div>
+
+            <div class="step-actions">
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" matStepperNext>
+                Next
+              </button>
+            </div>
+          </form>
+        </mat-step>
+
+        <!-- STEP 3: IMAGES -->
+        <mat-step>
+          <ng-template matStepLabel>Images & Submit</ng-template>
+
+          <div class="upload-box">
+            <label class="upload-label">
+              <input type="file" multiple (change)="onImageSelect($event)" hidden />
+              <mat-icon color="primary">cloud_upload</mat-icon>
+              <span>Upload Event Images</span>
+            </label>
+          </div>
+
+          <div class="preview-grid" *ngIf="imagePreviews.length">
+            <img
+              *ngFor="let img of imagePreviews"
+              [src]="img"
+              class="preview-img"
+            />
+          </div>
+
+          <div class="step-actions">
+            <button mat-button matStepperPrevious>Back</button>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="submitEvent()"
+            >
+              Create Event
+            </button>
+          </div>
+        </mat-step>
+
+      </mat-stepper>
+
+    </mat-card-content>
+  </mat-card>
+
+</div>

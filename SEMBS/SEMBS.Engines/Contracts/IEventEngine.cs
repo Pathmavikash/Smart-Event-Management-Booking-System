@@ -4,6 +4,8 @@ namespace SEMBS.SEMBS.Engines.Contracts
 {
     public interface IEventEngine
     {
-        public bool AddNewEvent(EventDTO eventDTO);
+        public Task<bool> AddNewEvent(Event eventDTO);
+        public Task<List<EventDTO>> GetMyEvents (int userId);
+        public Task<List<EventDTO>> GetAllEvents();
     }
 }

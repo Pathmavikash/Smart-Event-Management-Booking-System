@@ -1,0 +1,64 @@
+.register-container {
+  height: calc(100vh - 56px);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 40px;
+
+  background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.70)
+    ),
+    url("/assets/images/login-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.register-card {
+  width: 100%;
+  max-width: 460px;
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+.register-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.register-button {
+  height: 44px;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.register-links {
+  margin-top: 6px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.register-links a {
+  margin-left: 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    justify-content: center;
+    padding: 16px;
+  }
+}

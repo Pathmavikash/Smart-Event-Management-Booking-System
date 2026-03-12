@@ -1,0 +1,43 @@
+<div class="my-events-container">
+
+  <h2>My Events</h2>
+
+  <div *ngIf="isLoading" class="loading">
+    Loading your events...
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <!-- No Events -->
+  <div *ngIf="!isLoading && events.length === 0" class="no-events">
+    You haven’t created any events yet.
+  </div>
+
+  <!-- Events List -->
+  <div class="event-grid" *ngIf="events.length > 0">
+    <mat-card class="event-card" *ngFor="let event of events">
+
+      <mat-card-header>
+        <mat-card-title>{{ event.title }}</mat-card-title>
+        <mat-card-subtitle>{{ event.date | date:'mediumDate' }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p><strong>Location:</strong> {{ event.venue }}</p>
+        <p>{{ event.description }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-stroked-button color="primary"
+                (click)="editEvent(event)">
+          Edit
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </div>
+
+</div>

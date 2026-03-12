@@ -4,6 +4,8 @@ namespace SEMBS.SEMBS.Service.Contracts
 {
     public interface IEventService
     {
-        public bool AddNewEvent(EventDTO eventDTO);
+        public Task<bool> AddNewEvent(EventDTO eventDTO);
+        public Task<List<EventDTO>> GetMyEvents(int userId);
+        public Task<List<EventDTO>> GetAllEvents();
     }
 }
